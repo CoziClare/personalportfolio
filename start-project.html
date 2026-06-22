@@ -1,0 +1,1690 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Start Your Project — Clare Zhang</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        :root {
+            --primary: #1a1a1a;
+            --secondary: #4a4a4a;
+            --accent: #2c5f7c;
+            --accent-light: #e8f0f4;
+            --background: #ffffff;
+            --surface: #f8f8f8;
+            --border: #e5e5e5;
+            --text-primary: #1a1a1a;
+            --text-secondary: #6b6b6b;
+            --success: #2d6a4f;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+            font-weight: 400;
+            color: var(--text-primary);
+            background-color: var(--background);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3, h4 {
+            font-weight: 500;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.2s ease;
+        }
+
+        a:hover {
+            color: var(--accent);
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Header */
+        header {
+            position: sticky;
+            top: 0;
+            background: white;
+            border-bottom: 1px solid var(--border);
+            z-index: 100;
+            padding: 20px 0;
+        }
+
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 18px;
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .back-link:hover {
+            color: var(--accent);
+        }
+
+        /* Page hero */
+        .page-hero {
+            padding: 64px 0 48px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .page-hero .eyebrow {
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 16px;
+        }
+
+        .page-hero h1 {
+            font-size: 40px;
+            margin-bottom: 16px;
+            max-width: 640px;
+        }
+
+        .page-hero p {
+            font-size: 17px;
+            color: var(--text-secondary);
+            max-width: 560px;
+            line-height: 1.7;
+        }
+
+        /* Progress steps */
+        .process-bar {
+            display: flex;
+            gap: 0;
+            margin-top: 48px;
+            border: 1px solid var(--border);
+            background: var(--surface);
+        }
+
+        .process-step {
+            flex: 1;
+            padding: 20px 24px;
+            border-right: 1px solid var(--border);
+            position: relative;
+        }
+
+        .process-step:last-child {
+            border-right: none;
+        }
+
+        .process-step.active {
+            background: white;
+            border-bottom: 2px solid var(--accent);
+        }
+
+        .process-step.completed {
+            background: white;
+        }
+
+        .process-step.completed .step-number {
+            color: var(--success);
+        }
+
+        .process-step.completed .step-desc {
+            color: var(--success);
+        }
+
+        .process-step:not(.active):not(.completed) {
+            opacity: 0.6;
+        }
+
+        .step-number {
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            color: var(--accent);
+            margin-bottom: 6px;
+        }
+
+        .step-title {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+
+        .step-desc {
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
+        /* Main layout */
+        .main-content {
+            padding: 64px 0 80px;
+        }
+
+        .layout {
+            display: grid;
+            grid-template-columns: 340px 1fr;
+            gap: 64px;
+            align-items: start;
+        }
+
+        /* Sidebar summary */
+        .summary-card {
+            border: 1px solid var(--border);
+            background: var(--surface);
+            position: sticky;
+            top: 100px;
+        }
+
+        .summary-header {
+            padding: 28px 28px 20px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .summary-header h3 {
+            font-size: 18px;
+            margin-bottom: 8px;
+        }
+
+        .summary-header p {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .summary-price {
+            padding: 20px 28px;
+            border-bottom: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .summary-price .amount {
+            font-size: 28px;
+            font-weight: 500;
+            letter-spacing: -0.02em;
+        }
+
+        .summary-price .timeline {
+            font-size: 11px;
+            color: var(--text-secondary);
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            margin-top: 4px;
+        }
+
+        .summary-deliverables {
+            padding: 24px 28px;
+        }
+
+        .summary-deliverables h4 {
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+        }
+
+        .summary-deliverables ul {
+            list-style: none;
+        }
+
+        .summary-deliverables li {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: 13px;
+            color: var(--text-secondary);
+            padding: 8px 0;
+            border-bottom: 1px solid var(--border);
+            line-height: 1.5;
+        }
+
+        .summary-deliverables li:last-child {
+            border-bottom: none;
+        }
+
+        .summary-deliverables li i {
+            color: var(--accent);
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .trust-note {
+            padding: 20px 28px;
+            border-top: 1px solid var(--border);
+            background: white;
+        }
+
+        .trust-note p {
+            font-size: 12px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Form */
+        .form-section {
+            max-width: 560px;
+        }
+
+        .form-section > h2 {
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+
+        .form-section > .form-intro {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+        }
+
+        .form-group {
+            margin-bottom: 28px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        label {
+            display: block;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+            letter-spacing: 0.2px;
+        }
+
+        label .optional {
+            font-weight: 400;
+            color: var(--text-secondary);
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 12px 14px;
+            font-family: inherit;
+            font-size: 14px;
+            color: var(--text-primary);
+            background: white;
+            border: 1px solid var(--border);
+            transition: border-color 0.2s ease;
+            appearance: none;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 120px;
+            line-height: 1.6;
+        }
+
+        select {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236b6b6b' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 14px center;
+            padding-right: 36px;
+            cursor: pointer;
+        }
+
+        .field-hint {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-top: 6px;
+        }
+
+        /* Service selector pills */
+        .service-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .service-option {
+            position: relative;
+        }
+
+        .service-option input {
+            position: absolute;
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .service-option label {
+            display: block;
+            padding: 16px;
+            border: 1px solid var(--border);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            margin-bottom: 0;
+            font-size: 13px;
+            font-weight: 400;
+            line-height: 1.5;
+        }
+
+        .service-option label strong {
+            display: block;
+            font-weight: 500;
+            font-size: 14px;
+            margin-bottom: 4px;
+            color: var(--text-primary);
+        }
+
+        .service-option input:checked + label {
+            border-color: var(--accent);
+            background: var(--accent-light);
+        }
+
+        .service-option label:hover {
+            border-color: var(--accent);
+        }
+
+        /* Submit */
+        .form-actions {
+            margin-top: 40px;
+            padding-top: 32px;
+            border-top: 1px solid var(--border);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 14px 36px;
+            background-color: var(--primary);
+            color: white;
+            border: 1px solid var(--primary);
+            font-family: inherit;
+            font-size: 14px;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .btn:hover {
+            background-color: var(--accent);
+            border-color: var(--accent);
+        }
+
+        .form-disclaimer {
+            font-size: 12px;
+            color: var(--text-secondary);
+            text-align: center;
+            margin-top: 16px;
+            line-height: 1.6;
+        }
+
+        /* Step panels */
+        .step-panel {
+            display: none;
+            max-width: 560px;
+        }
+
+        .step-panel.active {
+            display: block;
+        }
+
+        .step-panel > h2 {
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+
+        .step-panel > .form-intro {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+        }
+
+        /* Brief recap */
+        .brief-recap {
+            padding: 20px;
+            border: 1px solid var(--border);
+            background: var(--surface);
+            margin-bottom: 32px;
+        }
+
+        .brief-recap h4 {
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+        }
+
+        .brief-recap dl {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 6px 16px;
+            font-size: 13px;
+        }
+
+        .brief-recap dt {
+            color: var(--text-secondary);
+            font-weight: 400;
+        }
+
+        .brief-recap dd {
+            color: var(--text-primary);
+            margin: 0;
+        }
+
+        /* Date & time slots */
+        .slot-section-label {
+            font-size: 13px;
+            font-weight: 500;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+
+        .date-slots {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(72px, 1fr));
+            gap: 8px;
+            margin-bottom: 28px;
+        }
+
+        .date-slot {
+            position: relative;
+        }
+
+        .date-slot input {
+            position: absolute;
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .date-slot label {
+            display: block;
+            padding: 10px 6px;
+            border: 1px solid var(--border);
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            margin-bottom: 0;
+            font-size: 12px;
+            font-weight: 400;
+            line-height: 1.4;
+        }
+
+        .date-slot label .day-name {
+            display: block;
+            color: var(--text-secondary);
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .date-slot label .day-num {
+            display: block;
+            font-size: 16px;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .date-slot input:checked + label {
+            border-color: var(--accent);
+            background: var(--accent-light);
+        }
+
+        .time-slots {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            gap: 8px;
+            margin-bottom: 28px;
+        }
+
+        .time-slot {
+            position: relative;
+        }
+
+        .time-slot input {
+            position: absolute;
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .time-slot label {
+            display: block;
+            padding: 10px;
+            border: 1px solid var(--border);
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            margin-bottom: 0;
+            font-size: 13px;
+            font-weight: 400;
+        }
+
+        .time-slot input:checked + label {
+            border-color: var(--accent);
+            background: var(--accent-light);
+        }
+
+        .time-slot input:disabled + label {
+            opacity: 0.35;
+            cursor: not-allowed;
+        }
+
+        /* Proposal review */
+        .proposal-card {
+            border: 1px solid var(--border);
+            margin-bottom: 28px;
+        }
+
+        .proposal-card-header {
+            padding: 24px 28px;
+            border-bottom: 1px solid var(--border);
+            background: var(--surface);
+        }
+
+        .proposal-card-header h3 {
+            font-size: 18px;
+            margin-bottom: 4px;
+        }
+
+        .proposal-card-header p {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .proposal-card-body {
+            padding: 24px 28px;
+        }
+
+        .proposal-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border);
+            font-size: 14px;
+        }
+
+        .proposal-row:last-child {
+            border-bottom: none;
+        }
+
+        .proposal-row .label {
+            color: var(--text-secondary);
+        }
+
+        .proposal-row .value {
+            font-weight: 500;
+            text-align: right;
+            max-width: 60%;
+        }
+
+        .proposal-scope {
+            padding: 20px 28px;
+            border-top: 1px solid var(--border);
+            background: var(--surface);
+        }
+
+        .proposal-scope h4 {
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+            margin-bottom: 10px;
+        }
+
+        .proposal-scope p {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        .next-steps-list {
+            list-style: none;
+            margin-bottom: 28px;
+        }
+
+        .next-steps-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 14px 0;
+            border-bottom: 1px solid var(--border);
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .next-steps-list li:last-child {
+            border-bottom: none;
+        }
+
+        .next-steps-list .step-badge {
+            flex-shrink: 0;
+            width: 24px;
+            height: 24px;
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            font-size: 11px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 28px;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            width: 16px;
+            height: 16px;
+            margin-top: 3px;
+            flex-shrink: 0;
+            accent-color: var(--accent);
+        }
+
+        .checkbox-group label {
+            font-size: 13px;
+            font-weight: 400;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 0;
+            cursor: pointer;
+        }
+
+        .form-actions-row {
+            display: flex;
+            gap: 12px;
+        }
+
+        .form-actions-row .btn {
+            flex: 1;
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--surface);
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .submit-error {
+            display: none;
+            padding: 14px 16px;
+            border: 1px solid #c0392b;
+            background: #fdf2f2;
+            color: #922b21;
+            font-size: 13px;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        .submit-error.visible {
+            display: block;
+        }
+
+        .meeting-link-box {
+            margin-top: 16px;
+            padding: 14px 16px;
+            border: 1px solid var(--border);
+            background: white;
+            font-size: 13px;
+        }
+
+        .meeting-link-box a {
+            color: var(--accent);
+            word-break: break-all;
+        }
+
+        .sidebar-step-info {
+            padding: 20px 28px;
+            border-top: 1px solid var(--border);
+            background: white;
+        }
+
+        .sidebar-step-info h4 {
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+        }
+
+        .sidebar-step-info p {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .sidebar-step-info .highlight {
+            color: var(--accent);
+            font-weight: 500;
+        }
+
+        /* Success state */
+        .success-panel {
+            display: none;
+            text-align: center;
+            padding: 64px 32px;
+            border: 1px solid var(--border);
+            background: var(--surface);
+        }
+
+        .success-panel.visible {
+            display: block;
+        }
+
+        .success-icon {
+            width: 56px;
+            height: 56px;
+            border: 1px solid var(--success);
+            color: var(--success);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+        }
+
+        .success-panel h2 {
+            font-size: 28px;
+            margin-bottom: 12px;
+        }
+
+        .success-panel p {
+            font-size: 15px;
+            color: var(--text-secondary);
+            max-width: 400px;
+            margin: 0 auto 32px;
+            line-height: 1.7;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary);
+            width: auto;
+            padding: 12px 28px;
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--surface);
+            border-top: 1px solid var(--border);
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        footer p {
+            font-size: 12px;
+            color: var(--text-secondary);
+            letter-spacing: 0.5px;
+        }
+
+        .layout.complete {
+            grid-template-columns: 1fr;
+        }
+
+        .layout.complete .success-panel {
+            max-width: 560px;
+            margin: 0 auto;
+        }
+        @media (max-width: 900px) {
+            .layout {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .summary-card {
+                position: static;
+            }
+
+            .process-bar {
+                flex-direction: column;
+            }
+
+            .process-step {
+                border-right: none;
+                border-bottom: 1px solid var(--border);
+            }
+
+            .process-step:last-child {
+                border-bottom: none;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .page-hero h1 {
+                font-size: 32px;
+            }
+
+            .form-row,
+            .service-options {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-inner">
+            <a href="index.html" class="logo">CLARE ZHANG</a>
+            <a href="index.html#services" class="back-link">
+                <i data-lucide="arrow-left" style="width:16px;height:16px;"></i>
+                Back to Services
+            </a>
+        </div>
+    </header>
+
+    <section class="page-hero">
+        <div class="container">
+            <p class="eyebrow">Project Inquiry</p>
+            <h1 id="hero-title">Tell me about your project</h1>
+            <p id="hero-desc">Share a few details and I'll respond within 1–2 business days with a scoped proposal, timeline, and next steps.</p>
+
+            <div class="process-bar" id="process-bar">
+                <div class="process-step active" data-step="1">
+                    <div class="step-number">Step 01</div>
+                    <div class="step-title">Project Brief</div>
+                    <div class="step-desc" id="step-1-desc">You are here</div>
+                </div>
+                <div class="process-step" data-step="2">
+                    <div class="step-number">Step 02</div>
+                    <div class="step-title">Preferred Times</div>
+                    <div class="step-desc" id="step-2-desc">Afternoon slots</div>
+                </div>
+                <div class="process-step" data-step="3">
+                    <div class="step-number">Step 03</div>
+                    <div class="step-title">Proposal & Kickoff</div>
+                    <div class="step-desc" id="step-3-desc">Scope, timeline, start</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <main class="main-content">
+        <div class="container">
+            <div class="layout">
+                <!-- Sidebar: selected package summary -->
+                <aside>
+                    <div class="summary-card" id="summary-card">
+                        <div class="summary-header">
+                            <h3 id="summary-title">Enterprise BI Dashboard Automation</h3>
+                            <p id="summary-desc">Maximize efficiency using proven frameworks that have delivered $210K in annual savings.</p>
+                        </div>
+                        <div class="summary-price">
+                            <div class="amount" id="summary-price">$800 – $2,500</div>
+                            <div class="timeline" id="summary-timeline">30–50 Hours · 2–3 Weeks</div>
+                        </div>
+                        <div class="summary-deliverables">
+                            <h4>Included Deliverables</h4>
+                            <ul id="summary-list">
+                                <li><i data-lucide="check" style="width:14px;height:14px;"></i> Data cleaning & standardization pipeline</li>
+                                <li><i data-lucide="check" style="width:14px;height:14px;"></i> Automated core KPI dashboard</li>
+                                <li><i data-lucide="check" style="width:14px;height:14px;"></i> Predictive analytics layer</li>
+                                <li><i data-lucide="check" style="width:14px;height:14px;"></i> Source PBIX file + 1 revision</li>
+                            </ul>
+                        </div>
+                        <div class="trust-note" id="sidebar-trust">
+                            <p>No commitment required. Every inquiry receives a personalized response — not a generic template.</p>
+                        </div>
+                        <div class="sidebar-step-info" id="sidebar-step-info" style="display:none;">
+                            <h4 id="sidebar-info-title">Up Next</h4>
+                            <p id="sidebar-info-text"></p>
+                        </div>
+                    </div>
+                </aside>
+
+                <!-- Step 1: Project Brief -->
+                <div class="step-panel active" id="step-1">
+                    <h2>Project Details</h2>
+                    <p class="form-intro">Fields marked with * are required. The more context you share, the more accurate my initial proposal will be.</p>
+
+                    <form id="project-form">
+                        <div class="form-group">
+                            <label>Which service are you interested in? *</label>
+                            <div class="service-options">
+                                <div class="service-option">
+                                    <input type="radio" name="service" id="service-bi" value="bi" checked>
+                                    <label for="service-bi">
+                                        <strong>BI Dashboard Automation</strong>
+                                        Power BI, data pipelines, KPI reporting
+                                    </label>
+                                </div>
+                                <div class="service-option">
+                                    <input type="radio" name="service" id="service-ai" value="ai">
+                                    <label for="service-ai">
+                                        <strong>Custom AI Assistant</strong>
+                                        RAG chatbots, NLP, process automation
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="name">Full Name *</label>
+                                <input type="text" id="name" name="name" placeholder="Jane Smith" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="company">Company / Organization *</label>
+                                <input type="text" id="company" name="company" placeholder="Acme Corp" required>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="email">Work Email *</label>
+                                <input type="email" id="email" name="email" placeholder="jane@company.com" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone <span class="optional">(optional)</span></label>
+                                <input type="tel" id="phone" name="phone" placeholder="+1 (555) 000-0000">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="timeline">Desired Timeline *</label>
+                            <select id="timeline" name="timeline" required>
+                                <option value="" disabled selected>Select a timeframe</option>
+                                <option value="asap">As soon as possible</option>
+                                <option value="1-month">Within 1 month</option>
+                                <option value="1-3-months">1–3 months</option>
+                                <option value="flexible">Flexible / exploring options</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="budget">Estimated Budget Range</label>
+                            <select id="budget" name="budget">
+                                <option value="" disabled selected>Select a range</option>
+                                <option value="under-1k">Under $1,000</option>
+                                <option value="1k-2.5k">$1,000 – $2,500</option>
+                                <option value="2.5k-5k">$2,500 – $5,000</option>
+                                <option value="5k-plus">$5,000+</option>
+                                <option value="unsure">Not sure yet</option>
+                            </select>
+                            <p class="field-hint">Helps me tailor scope recommendations to your constraints.</p>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="challenge">What problem are you trying to solve? *</label>
+                            <textarea id="challenge" name="challenge" placeholder="Describe your current reporting pain points, data sources, team size, and what success looks like for this project." required></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="data-sources">Current Data Stack <span class="optional">(optional)</span></label>
+                            <input type="text" id="data-sources" name="data_sources" placeholder="e.g. SQL Server, PostgreSQL, Salesforce, Excel, Power BI">
+                            <p class="field-hint">List any databases, tools, or platforms you're currently using.</p>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="submit" class="btn">
+                                Continue to Preferred Times
+                                <i data-lucide="arrow-right" style="width:16px;height:16px;"></i>
+                            </button>
+                            <p class="form-disclaimer">Your information is kept confidential and used solely to prepare your project proposal.</p>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Step 2: Preferred Availability -->
+                <div class="step-panel" id="step-2">
+                    <h2>Preferred Call Times</h2>
+                    <p class="form-intro">Choose your preferred afternoon slot. Clare will review your inquiry and confirm the meeting by email before sending the Zoom link.</p>
+
+                    <div class="brief-recap" id="step2-recap"></div>
+
+                    <form id="discovery-form">
+                        <div class="form-group">
+                            <div class="slot-section-label">Preferred date *</div>
+                            <div class="date-slots" id="date-slots"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="slot-section-label">Preferred time (afternoons) *</div>
+                            <div class="time-slots" id="time-slots"></div>
+                            <p class="field-hint" id="time-hint">Afternoon availability only · Times shown in your local timezone.</p>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="meeting-platform">Meeting platform</label>
+                            <select id="meeting-platform" name="meeting_platform" required>
+                                <option value="zoom" selected>Zoom (default)</option>
+                            </select>
+                            <p class="field-hint">The Zoom link will be sent to you by email after Clare confirms your preferred time.</p>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="call-topics">Topics you'd like to cover <span class="optional">(optional)</span></label>
+                            <textarea id="call-topics" name="call_topics" placeholder="e.g. Data source access, KPI priorities, team stakeholders, integration requirements"></textarea>
+                        </div>
+
+                        <div class="form-actions">
+                            <div class="form-actions-row">
+                                <button type="button" class="btn btn-outline" id="back-to-step1">Back</button>
+                                <button type="submit" class="btn">
+                                    Continue to Proposal
+                                    <i data-lucide="arrow-right" style="width:16px;height:16px;"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Step 3: Proposal & Kickoff -->
+                <div class="step-panel" id="step-3">
+                    <h2>Review Your Proposal</h2>
+                    <p class="form-intro">Based on your brief, here's a preliminary scope. Confirm to schedule your project kickoff.</p>
+
+                    <div class="proposal-card" id="proposal-card"></div>
+
+                    <h4 style="font-size:14px;font-weight:500;margin-bottom:16px;">What happens after you confirm</h4>
+                    <ul class="next-steps-list">
+                        <li>
+                            <span class="step-badge">1</span>
+                            <span>Clare receives your inquiry and reviews your preferred afternoon time.</span>
+                        </li>
+                        <li>
+                            <span class="step-badge">2</span>
+                            <span>She emails you from <strong>cielcc68@outlook.com</strong> to confirm the meeting and send the Zoom link.</span>
+                        </li>
+                        <li>
+                            <span class="step-badge">3</span>
+                            <span>After the discovery call, you'll receive a finalized statement of work with exact pricing.</span>
+                        </li>
+                    </ul>
+
+                    <form id="confirm-form">
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="agree-terms" required>
+                            <label for="agree-terms">I agree to the preliminary scope above. I understand final pricing will be confirmed after the discovery call.</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="agree-meeting" required>
+                            <label for="agree-meeting">I understand my preferred time is not yet confirmed. Clare will email me to confirm the meeting and share the Zoom link before it takes place.</label>
+                        </div>
+
+                        <div class="submit-error" id="submit-error"></div>
+
+                        <div class="form-actions">
+                            <div class="form-actions-row">
+                                <button type="button" class="btn btn-outline" id="back-to-step2">Back</button>
+                                <button type="submit" class="btn" id="confirm-btn">
+                                    Submit Inquiry
+                                    <i data-lucide="check" style="width:16px;height:16px;"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Complete -->
+                <div class="success-panel" id="success-panel">
+                    <div class="success-icon">
+                        <i data-lucide="check" style="width:28px;height:28px;"></i>
+                    </div>
+                    <h2>You're All Set</h2>
+                    <p id="success-message">Your project inquiry and discovery call have been submitted. I'll be in touch shortly.</p>
+                    <div class="brief-recap" id="success-summary" style="text-align:left;margin-bottom:32px;"></div>
+                    <a href="index.html" class="btn btn-secondary">Return to Home</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Clare Zhang | Data Strategy & AI Solutions</p>
+        </div>
+    </footer>
+
+    <script src="config.js"></script>
+    <script>
+        lucide.createIcons();
+
+        const packages = {
+            bi: {
+                title: 'Enterprise BI Dashboard Automation',
+                desc: 'Maximize efficiency using proven frameworks that have delivered $210K in annual savings.',
+                price: '$800 – $2,500',
+                timeline: '30–50 Hours · 2–3 Weeks',
+                deliverables: [
+                    'Data cleaning & standardization pipeline',
+                    'Automated core KPI dashboard',
+                    'Predictive analytics layer',
+                    'Source PBIX file + 1 revision'
+                ]
+            },
+            ai: {
+                title: 'Custom AI Assistant Implementation',
+                desc: 'Leverage LLMs for complex internal process optimization and automation.',
+                price: '$1,200 – $3,500+',
+                timeline: '60–100 Hours · 4–6 Weeks',
+                deliverables: [
+                    'RAG chatbot proof of concept',
+                    'Custom NLP text classification',
+                    'Business process automation via API',
+                    'Prompt engineering & fine-tuning guidance'
+                ]
+            }
+        };
+
+        const timelineLabels = {
+            'asap': 'As soon as possible',
+            '1-month': 'Within 1 month',
+            '1-3-months': '1–3 months',
+            'flexible': 'Flexible / exploring options'
+        };
+
+        const budgetLabels = {
+            'under-1k': 'Under $1,000',
+            '1k-2.5k': '$1,000 – $2,500',
+            '2.5k-5k': '$2,500 – $5,000',
+            '5k-plus': '$5,000+',
+            'unsure': 'Not sure yet'
+        };
+
+        const platformLabels = {
+            'zoom': 'Zoom',
+            'google-meet': 'Google Meet',
+            'teams': 'Microsoft Teams',
+            'phone': 'Phone call'
+        };
+
+        const heroContent = {
+            1: { title: 'Tell me about your project', desc: 'Share a few details and Clare will respond within 1–2 business days with a scoped proposal and next steps.' },
+            2: { title: 'Choose your preferred time', desc: 'Select an afternoon slot that works for you. Clare will confirm the meeting by email before sending the Zoom link.' },
+            3: { title: 'Review and submit', desc: 'Review your preliminary scope and submit your inquiry. The meeting is confirmed only after Clare replies by email.' },
+            complete: { title: 'Inquiry submitted', desc: 'Your inquiry is on its way. Clare will email you to confirm your meeting time and share the Zoom link.' }
+        };
+
+        let currentStep = 1;
+        const formData = {};
+
+        function updateSummary(service) {
+            const pkg = packages[service];
+            document.getElementById('summary-title').textContent = pkg.title;
+            document.getElementById('summary-desc').textContent = pkg.desc;
+            document.getElementById('summary-price').textContent = pkg.price;
+            document.getElementById('summary-timeline').textContent = pkg.timeline;
+
+            const list = document.getElementById('summary-list');
+            list.innerHTML = pkg.deliverables.map(item =>
+                `<li><i data-lucide="check" style="width:14px;height:14px;"></i> ${item}</li>`
+            ).join('');
+            lucide.createIcons();
+        }
+
+        function updateProcessBar(step) {
+            document.querySelectorAll('.process-step').forEach(el => {
+                const s = parseInt(el.dataset.step);
+                el.classList.remove('active', 'completed');
+                if (s === step) el.classList.add('active');
+                else if (s < step) el.classList.add('completed');
+            });
+
+            document.getElementById('step-1-desc').textContent = step > 1 ? 'Complete' : 'You are here';
+            document.getElementById('step-2-desc').textContent = step === 2 ? 'You are here' : step > 2 ? 'Preferences sent' : 'Afternoon slots';
+            document.getElementById('step-3-desc').textContent = step === 3 ? 'You are here' : step > 3 ? 'Confirmed' : 'Scope, timeline, start';
+        }
+
+        function updateHero(step) {
+            const content = heroContent[step];
+            document.getElementById('hero-title').textContent = content.title;
+            document.getElementById('hero-desc').textContent = content.desc;
+        }
+
+        function updateSidebar(step) {
+            const trust = document.getElementById('sidebar-trust');
+            const info = document.getElementById('sidebar-step-info');
+            const infoTitle = document.getElementById('sidebar-info-title');
+            const infoText = document.getElementById('sidebar-info-text');
+
+            if (step === 1) {
+                trust.style.display = 'block';
+                info.style.display = 'none';
+            } else if (step === 2) {
+                trust.style.display = 'none';
+                info.style.display = 'block';
+                infoTitle.textContent = 'Afternoon Availability';
+                infoText.innerHTML = 'Clare is mostly available in the afternoon. Your preferred time will be confirmed by email before the Zoom link is shared.';
+            } else if (step === 3) {
+                trust.style.display = 'none';
+                info.style.display = 'block';
+                infoTitle.textContent = 'Preferred Time';
+                const callDate = formData.callDateLabel || '—';
+                const callTime = formData.callTime || '—';
+                infoText.innerHTML = `<span class="highlight">${callDate}</span> at <span class="highlight">${callTime}</span><br><em style="font-size:12px;">Pending email confirmation</em>`;
+            }
+        }
+
+        function showStep(step) {
+            currentStep = step;
+            const layout = document.querySelector('.layout');
+            document.querySelectorAll('.step-panel').forEach(el => el.classList.remove('active'));
+            document.getElementById('success-panel').classList.remove('visible');
+
+            if (step === 'complete') {
+                layout.classList.add('complete');
+                document.querySelector('aside').style.display = 'none';
+                document.getElementById('success-panel').classList.add('visible');
+                updateHero('complete');
+                updateProcessBar(4);
+            } else {
+                layout.classList.remove('complete');
+                document.querySelector('aside').style.display = 'block';
+                document.getElementById('summary-card').style.display = 'block';
+                document.getElementById(`step-${step}`).classList.add('active');
+                updateProcessBar(step);
+                updateHero(step);
+                updateSidebar(step);
+                if (step === 2) initScheduling();
+            }
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        const ALL_TIME_SLOTS = ['12:00 PM', '12:30 PM', '1:00 PM', '1:30 PM', '2:00 PM', '2:30 PM', '3:00 PM', '3:30 PM', '4:00 PM', '4:30 PM'];
+        const BOOKING_BUFFER_HOURS = 2;
+
+        function toLocalDateISO(date) {
+            const y = date.getFullYear();
+            const m = String(date.getMonth() + 1).padStart(2, '0');
+            const d = String(date.getDate()).padStart(2, '0');
+            return `${y}-${m}-${d}`;
+        }
+
+        function parseTimeToMinutes(timeStr) {
+            const [time, period] = timeStr.split(' ');
+            let [hours, minutes] = time.split(':').map(Number);
+            if (period === 'PM' && hours !== 12) hours += 12;
+            if (period === 'AM' && hours === 12) hours = 0;
+            return hours * 60 + minutes;
+        }
+
+        function getSlotDateTime(dateISO, timeStr) {
+            const [y, m, d] = dateISO.split('-').map(Number);
+            const minutes = parseTimeToMinutes(timeStr);
+            return new Date(y, m - 1, d, Math.floor(minutes / 60), minutes % 60, 0, 0);
+        }
+
+        function isSlotAvailable(dateISO, timeStr) {
+            const slotTime = getSlotDateTime(dateISO, timeStr);
+            const earliest = new Date(Date.now() + BOOKING_BUFFER_HOURS * 60 * 60 * 1000);
+            return slotTime >= earliest;
+        }
+
+        function getAvailableTimesForDate(dateISO) {
+            return ALL_TIME_SLOTS.filter(time => isSlotAvailable(dateISO, time));
+        }
+
+        function generateDateSlots() {
+            const container = document.getElementById('date-slots');
+            const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+            const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+            const date = new Date();
+            date.setHours(0, 0, 0, 0);
+            const todayISO = toLocalDateISO(new Date());
+
+            let html = '';
+            let count = 0;
+            let lastMonth = null;
+
+            while (count < 10) {
+                const dayOfWeek = date.getDay();
+                if (dayOfWeek !== 0 && dayOfWeek !== 6) {
+                    const iso = toLocalDateISO(date);
+                    const availableTimes = getAvailableTimesForDate(iso);
+
+                    if (availableTimes.length > 0) {
+                        const isToday = iso === todayISO;
+                        const dayLabel = isToday ? 'Today' : days[dayOfWeek];
+                        const label = `${dayLabel}, ${months[date.getMonth()]} ${date.getDate()}`;
+                        const showMonth = lastMonth !== date.getMonth();
+                        lastMonth = date.getMonth();
+
+                        html += `
+                            <div class="date-slot">
+                                <input type="radio" name="call_date" id="date-${iso}" value="${iso}" data-label="${label}">
+                                <label for="date-${iso}">
+                                    ${showMonth ? `<span class="day-name">${months[date.getMonth()]}</span>` : `<span class="day-name">${dayLabel}</span>`}
+                                    <span class="day-num">${date.getDate()}</span>
+                                </label>
+                            </div>`;
+                        count++;
+                    }
+                }
+                date.setDate(date.getDate() + 1);
+            }
+
+            container.innerHTML = html;
+
+            const firstDate = container.querySelector('input[name="call_date"]');
+            if (firstDate) {
+                firstDate.checked = true;
+                generateTimeSlots(firstDate.value);
+            }
+
+            container.querySelectorAll('input[name="call_date"]').forEach(radio => {
+                radio.addEventListener('change', (e) => generateTimeSlots(e.target.value));
+            });
+        }
+
+        function generateTimeSlots(dateISO) {
+            const container = document.getElementById('time-slots');
+            const available = getAvailableTimesForDate(dateISO);
+            const now = new Date();
+            const isToday = dateISO === toLocalDateISO(now);
+
+            if (available.length === 0) {
+                container.innerHTML = '<p class="field-hint" style="grid-column:1/-1;">No available times for this date. Please choose another day.</p>';
+                return;
+            }
+
+            container.innerHTML = available.map((time, i) => `
+                <div class="time-slot">
+                    <input type="radio" name="call_time" id="time-${dateISO}-${i}" value="${time}" ${i === 0 ? 'checked' : ''}>
+                    <label for="time-${dateISO}-${i}">${time}</label>
+                </div>
+            `).join('');
+
+            const hint = document.getElementById('time-hint');
+            if (hint) {
+                const tz = Intl.DateTimeFormat().resolvedOptions().timeZone.replace(/_/g, ' ');
+                const localNow = now.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
+                hint.textContent = isToday
+                    ? `Afternoon slots only · at least ${BOOKING_BUFFER_HOURS} hours from now · Current time: ${localNow} (${tz})`
+                    : `Afternoon availability only · All times in your local timezone (${tz})`;
+            }
+        }
+
+        function initScheduling() {
+            generateDateSlots();
+            document.getElementById('meeting-platform').value = SITE_CONFIG.defaultPlatform || 'zoom';
+        }
+
+        function buildStep2Recap() {
+            const pkg = packages[formData.service];
+            document.getElementById('step2-recap').innerHTML = `
+                <h4>Your Brief</h4>
+                <dl>
+                    <dt>Service</dt><dd>${pkg.title}</dd>
+                    <dt>Contact</dt><dd>${formData.name} · ${formData.email}</dd>
+                    <dt>Company</dt><dd>${formData.company}</dd>
+                    <dt>Timeline</dt><dd>${timelineLabels[formData.timeline] || formData.timeline}</dd>
+                </dl>`;
+        }
+
+        function buildProposal() {
+            const pkg = packages[formData.service];
+            const budget = formData.budget ? budgetLabels[formData.budget] : 'To be discussed';
+            document.getElementById('proposal-card').innerHTML = `
+                <div class="proposal-card-header">
+                    <h3>${pkg.title}</h3>
+                    <p>Prepared for ${formData.name} · ${formData.company}</p>
+                </div>
+                <div class="proposal-card-body">
+                    <div class="proposal-row"><span class="label">Estimated Investment</span><span class="value">${pkg.price}</span></div>
+                    <div class="proposal-row"><span class="label">Project Duration</span><span class="value">${pkg.timeline}</span></div>
+                    <div class="proposal-row"><span class="label">Desired Start</span><span class="value">${timelineLabels[formData.timeline] || formData.timeline}</span></div>
+                    <div class="proposal-row"><span class="label">Budget Range</span><span class="value">${budget}</span></div>
+                    <div class="proposal-row"><span class="label">Preferred Call</span><span class="value">${formData.callDateLabel}, ${formData.callTime} (pending confirmation)</span></div>
+                    <div class="proposal-row"><span class="label">Meeting Platform</span><span class="value">Zoom — link sent after email confirmation</span></div>
+                </div>
+                <div class="proposal-scope">
+                    <h4>Project Scope</h4>
+                    <p>${formData.challenge}</p>
+                    ${formData.dataSources ? `<p style="margin-top:10px;"><strong>Data stack:</strong> ${formData.dataSources}</p>` : ''}
+                </div>`;
+        }
+
+        function getMeetingLink(platform) {
+            const link = SITE_CONFIG.meetingLinks[platform || SITE_CONFIG.defaultPlatform];
+            return link || null;
+        }
+
+        function buildGoogleCalendarLink(meetingLink) {
+            const start = getSlotDateTime(formData.callDate, formData.callTime);
+            const end = new Date(start.getTime() + 30 * 60 * 1000);
+            const pad = (n) => String(n).padStart(2, '0');
+            const fmt = (d) =>
+                `${d.getFullYear()}${pad(d.getMonth() + 1)}${pad(d.getDate())}T${pad(d.getHours())}${pad(d.getMinutes())}00`;
+
+            const pkg = packages[formData.service];
+            const details = [
+                `[PENDING CONFIRMATION — reply to client before adding to calendar]`,
+                `Service: ${pkg.title}`,
+                `Client: ${formData.name}`,
+                `Company: ${formData.company}`,
+                `Email: ${formData.email}`,
+                formData.phone ? `Phone: ${formData.phone}` : '',
+                formData.callTopics ? `Topics: ${formData.callTopics}` : '',
+                meetingLink ? `Zoom link to send client: ${meetingLink}` : ''
+            ].filter(Boolean).join('\n');
+
+            const params = new URLSearchParams({
+                action: 'TEMPLATE',
+                text: `[TBD] Discovery Call — ${formData.name} (${formData.company})`,
+                dates: `${fmt(start)}/${fmt(end)}`,
+                details,
+                location: meetingLink || 'Zoom'
+            });
+
+            return `https://calendar.google.com/calendar/render?${params.toString()}`;
+        }
+
+        function buildEmailPayload(meetingLink, calendarLink) {
+            const pkg = packages[formData.service];
+            const ownerName = SITE_CONFIG.ownerName || 'Clare Zhang';
+            return {
+                _subject: `Action Required — Confirm Meeting: ${formData.name} @ ${formData.company}`,
+                _template: 'table',
+                _captcha: 'false',
+                _replyto: formData.email,
+
+                '⚠️ Action Required': `Reply to ${formData.email} to confirm the meeting time, then send the Zoom link below.`,
+                'Meeting Status': 'PENDING — client has NOT received the Zoom link yet',
+
+                'Service': pkg.title,
+                'Client Name': formData.name,
+                'Company': formData.company,
+                'Client Email': formData.email,
+                'Phone': formData.phone || 'Not provided',
+                'Desired Timeline': timelineLabels[formData.timeline] || formData.timeline,
+                'Budget Range': budgetLabels[formData.budget] || 'Not specified',
+                'Project Challenge': formData.challenge,
+                'Data Stack': formData.dataSources || 'Not provided',
+
+                'Preferred Call Date': formData.callDateLabel,
+                'Preferred Call Time (Afternoon)': formData.callTime,
+                'Meeting Platform': 'Zoom',
+                'Zoom Link (include in your confirmation email)': meetingLink,
+                'Draft Calendar Event': calendarLink,
+                'Call Topics': formData.callTopics || 'None specified',
+                'Estimated Investment': pkg.price,
+                'Project Duration': pkg.timeline,
+
+                'Suggested Reply Template': `Hi ${formData.name.split(' ')[0]}, thank you for your inquiry! I'd like to confirm our discovery call on ${formData.callDateLabel} at ${formData.callTime}. Here is your Zoom link: ${meetingLink} — Looking forward to speaking with you. — ${ownerName}`
+            };
+        }
+
+        async function submitInquiry() {
+            if (typeof SITE_CONFIG === 'undefined') {
+                throw new Error('Site config is missing. Copy config.example.js to config.js and add your email and Zoom link.');
+            }
+            if (!SITE_CONFIG.ownerEmail || SITE_CONFIG.ownerEmail.includes('your-email')) {
+                throw new Error('Owner email is not configured. Edit config.js with your real email address.');
+            }
+
+            formData.meetingPlatform = SITE_CONFIG.defaultPlatform || 'zoom';
+            const meetingLink = getMeetingLink(formData.meetingPlatform);
+            const calendarLink = buildGoogleCalendarLink(meetingLink);
+
+            const response = await fetch(`https://formsubmit.co/ajax/${encodeURIComponent(SITE_CONFIG.ownerEmail)}`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                body: JSON.stringify(buildEmailPayload(meetingLink, calendarLink))
+            });
+
+            const result = await response.json();
+            if (!response.ok || result.success !== 'true') {
+                if (result.message && result.message.includes('Activation')) {
+                    throw new Error('Almost there — FormSubmit sent an activation email to cielcc68@outlook.com. Clare must click the "Activate Form" link once, then try submitting again.');
+                }
+                throw new Error(result.message || 'Failed to send inquiry. Please try again or email cielcc68@outlook.com directly.');
+            }
+        }
+
+        function buildSuccessSummary() {
+            const pkg = packages[formData.service];
+
+            document.getElementById('success-message').textContent =
+                `Thanks, ${formData.name.split(' ')[0]}. Your inquiry has been sent to Clare. She'll email you at ${formData.email} to confirm your meeting and share the Zoom link.`;
+
+            document.getElementById('success-summary').innerHTML = `
+                <h4>Submission Summary</h4>
+                <dl>
+                    <dt>Service</dt><dd>${pkg.title}</dd>
+                    <dt>Preferred Time</dt><dd>${formData.callDateLabel}, ${formData.callTime} <em>(pending confirmation)</em></dd>
+                    <dt>Platform</dt><dd>Zoom — link coming by email</dd>
+                    <dt>Your Email</dt><dd>${formData.email}</dd>
+                </dl>
+                <div class="meeting-link-box">
+                    <strong>Next step:</strong> Watch for an email from <strong>cielcc68@outlook.com</strong>. Clare will confirm your preferred time and send the Zoom meeting link before the call.
+                </div>`;
+        }
+
+        document.querySelectorAll('input[name="service"]').forEach(radio => {
+            radio.addEventListener('change', (e) => updateSummary(e.target.value));
+        });
+
+        const params = new URLSearchParams(window.location.search);
+        if (params.get('service') === 'ai') {
+            document.getElementById('service-ai').checked = true;
+            updateSummary('ai');
+        }
+
+        document.getElementById('project-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const fd = new FormData(e.target);
+            formData.service = fd.get('service');
+            formData.name = fd.get('name');
+            formData.company = fd.get('company');
+            formData.email = fd.get('email');
+            formData.phone = fd.get('phone');
+            formData.timeline = fd.get('timeline');
+            formData.budget = fd.get('budget');
+            formData.challenge = fd.get('challenge');
+            formData.dataSources = fd.get('data_sources');
+            buildStep2Recap();
+            showStep(2);
+        });
+
+        document.getElementById('back-to-step1').addEventListener('click', () => showStep(1));
+
+        document.getElementById('discovery-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const selectedDate = document.querySelector('input[name="call_date"]:checked');
+            const selectedTime = document.querySelector('input[name="call_time"]:checked');
+
+            if (!selectedDate || !selectedTime) {
+                alert('Please select an available date and time.');
+                return;
+            }
+
+            formData.callDate = selectedDate.value;
+            formData.callDateLabel = selectedDate.dataset.label;
+            formData.callTime = selectedTime.value;
+            formData.meetingPlatform = document.getElementById('meeting-platform').value;
+            formData.callTopics = document.getElementById('call-topics').value;
+            buildProposal();
+            showStep(3);
+        });
+
+        document.getElementById('back-to-step2').addEventListener('click', () => showStep(2));
+
+        document.getElementById('confirm-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const btn = document.getElementById('confirm-btn');
+            const errorEl = document.getElementById('submit-error');
+            errorEl.classList.remove('visible');
+            btn.disabled = true;
+            btn.innerHTML = 'Sending inquiry…';
+
+            try {
+                await submitInquiry();
+                buildSuccessSummary();
+                showStep('complete');
+            } catch (err) {
+                errorEl.textContent = err.message;
+                errorEl.classList.add('visible');
+                btn.disabled = false;
+                btn.innerHTML = 'Submit Inquiry <i data-lucide="check" style="width:16px;height:16px;"></i>';
+                lucide.createIcons();
+            }
+        });
+    </script>
+</body>
+</html>
