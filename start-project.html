@@ -7,21 +7,28 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
 
     <style>
         :root {
-            --primary: #1a1a1a;
-            --secondary: #4a4a4a;
-            --accent: #2c5f7c;
-            --accent-light: #e8f0f4;
-            --background: #ffffff;
-            --surface: #f8f8f8;
-            --border: #e5e5e5;
-            --text-primary: #1a1a1a;
-            --text-secondary: #6b6b6b;
-            --success: #2d6a4f;
+            --bg: #09090b;
+            --bg-elevated: #111113;
+            --bg-card: #18181b;
+            --border: rgba(255, 255, 255, 0.08);
+            --border-hover: rgba(255, 255, 255, 0.16);
+            --text: #fafafa;
+            --text-muted: #a1a1aa;
+            --text-subtle: #71717a;
+            --accent: #3b82f6;
+            --success: #22c55e;
+            --primary: var(--text);
+            --secondary: var(--text-muted);
+            --accent-light: rgba(59, 130, 246, 0.12);
+            --background: var(--bg);
+            --surface: var(--bg-elevated);
+            --text-primary: var(--text);
+            --text-secondary: var(--text-muted);
         }
 
         * {
@@ -31,13 +38,28 @@
         }
 
         body {
-            font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             font-weight: 400;
             color: var(--text-primary);
             background-color: var(--background);
             line-height: 1.6;
             -webkit-font-smoothing: antialiased;
         }
+
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+            background-size: 64px 64px;
+            mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, black 20%, transparent 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        header, .page-hero, .main-content, footer { position: relative; z-index: 1; }
 
         h1, h2, h3, h4 {
             font-weight: 500;
@@ -65,10 +87,11 @@
         header {
             position: sticky;
             top: 0;
-            background: white;
+            background: rgba(9, 9, 11, 0.75);
+            backdrop-filter: blur(16px);
             border-bottom: 1px solid var(--border);
             z-index: 100;
-            padding: 20px 0;
+            padding: 16px 0;
         }
 
         .header-inner {
@@ -78,9 +101,9 @@
         }
 
         .logo {
-            font-size: 18px;
-            font-weight: 500;
-            letter-spacing: 1px;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 0.08em;
         }
 
         .back-link {
@@ -144,12 +167,12 @@
         }
 
         .process-step.active {
-            background: white;
+            background: var(--bg-card);
             border-bottom: 2px solid var(--accent);
         }
 
         .process-step.completed {
-            background: white;
+            background: var(--bg-card);
         }
 
         .process-step.completed .step-number {
@@ -199,9 +222,11 @@
         /* Sidebar summary */
         .summary-card {
             border: 1px solid var(--border);
-            background: var(--surface);
+            background: var(--bg-card);
+            border-radius: 16px;
             position: sticky;
-            top: 100px;
+            top: 80px;
+            overflow: hidden;
         }
 
         .summary-header {
@@ -281,7 +306,7 @@
         .trust-note {
             padding: 20px 28px;
             border-top: 1px solid var(--border);
-            background: white;
+            background: var(--bg-elevated);
         }
 
         .trust-note p {
@@ -340,8 +365,9 @@
             font-family: inherit;
             font-size: 14px;
             color: var(--text-primary);
-            background: white;
+            background: var(--bg-elevated);
             border: 1px solid var(--border);
+            border-radius: 8px;
             transition: border-color 0.2s ease;
             appearance: none;
         }
@@ -433,21 +459,21 @@
             justify-content: center;
             gap: 8px;
             padding: 14px 36px;
-            background-color: var(--primary);
-            color: white;
-            border: 1px solid var(--primary);
+            background-color: var(--text);
+            color: var(--bg);
+            border: 1px solid var(--text);
             font-family: inherit;
             font-size: 14px;
-            font-weight: 400;
-            letter-spacing: 0.5px;
+            font-weight: 500;
+            border-radius: 8px;
             transition: all 0.2s ease;
             cursor: pointer;
             width: 100%;
         }
 
         .btn:hover {
-            background-color: var(--accent);
-            border-color: var(--accent);
+            background-color: #e4e4e7;
+            border-color: #e4e4e7;
         }
 
         .form-disclaimer {
@@ -749,13 +775,14 @@
 
         .btn-outline {
             background: transparent;
-            color: var(--primary);
+            color: var(--text);
+            border-color: var(--border);
         }
 
         .btn-outline:hover {
-            background: var(--surface);
-            border-color: var(--accent);
-            color: var(--accent);
+            background: var(--bg-elevated);
+            border-color: var(--border-hover);
+            color: var(--text);
         }
 
         .btn:disabled {
@@ -766,12 +793,13 @@
         .submit-error {
             display: none;
             padding: 14px 16px;
-            border: 1px solid #c0392b;
-            background: #fdf2f2;
-            color: #922b21;
+            border: 1px solid rgba(239, 68, 68, 0.4);
+            background: rgba(239, 68, 68, 0.1);
+            color: #fca5a5;
             font-size: 13px;
             margin-bottom: 20px;
             line-height: 1.5;
+            border-radius: 8px;
         }
 
         .submit-error.visible {
@@ -781,7 +809,7 @@
         .sidebar-step-info {
             padding: 20px 28px;
             border-top: 1px solid var(--border);
-            background: white;
+            background: var(--bg-elevated);
         }
 
         .sidebar-step-info h4 {
@@ -844,28 +872,29 @@
 
         .btn-secondary {
             background: transparent;
-            color: var(--primary);
+            color: var(--text);
+            border: 1px solid var(--border);
             width: auto;
             padding: 12px 28px;
         }
 
         .btn-secondary:hover {
-            background: var(--primary);
-            color: white;
+            background: var(--bg-elevated);
+            border-color: var(--border-hover);
+            color: var(--text);
         }
 
         /* Footer */
         footer {
-            background: var(--surface);
+            background: var(--bg);
             border-top: 1px solid var(--border);
-            padding: 40px 0;
+            padding: 32px 0;
             text-align: center;
         }
 
         footer p {
             font-size: 12px;
-            color: var(--text-secondary);
-            letter-spacing: 0.5px;
+            color: var(--text-subtle);
         }
 
         .layout.complete {
