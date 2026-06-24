@@ -376,7 +376,7 @@
         /* Service selector pills */
         .service-options {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
             gap: 12px;
         }
 
@@ -778,19 +778,6 @@
             display: block;
         }
 
-        .meeting-link-box {
-            margin-top: 16px;
-            padding: 14px 16px;
-            border: 1px solid var(--border);
-            background: white;
-            font-size: 13px;
-        }
-
-        .meeting-link-box a {
-            color: var(--accent);
-            word-break: break-all;
-        }
-
         .sidebar-step-info {
             padding: 20px 28px;
             border-top: 1px solid var(--border);
@@ -1018,6 +1005,13 @@
                                         RAG chatbots, NLP, process automation
                                     </label>
                                 </div>
+                                <div class="service-option">
+                                    <input type="radio" name="service" id="service-tutor" value="tutor">
+                                    <label for="service-tutor">
+                                        <strong>Data & AI Tutoring</strong>
+                                        Math, statistics, Python, ML fundamentals
+                                    </label>
+                                </div>
                             </div>
                         </div>
 
@@ -1226,6 +1220,18 @@
                     'Custom NLP text classification',
                     'Business process automation via API',
                     'Prompt engineering & fine-tuning guidance'
+                ]
+            },
+            tutor: {
+                title: 'Data, Math & AI Fundamentals Tutoring',
+                desc: 'Build strong foundations with 1-on-1 guidance from a Duke MSQM graduate and enterprise data strategist.',
+                price: '$75 – $150 / Session',
+                timeline: 'Flexible · 1-hour sessions',
+                deliverables: [
+                    'Statistics, linear algebra & Python',
+                    'AI/ML fundamentals: regression, NLP, LLMs',
+                    'Custom study plan for your goals',
+                    'Practice problems, code review & session notes'
                 ]
             }
         };
@@ -1609,10 +1615,7 @@
                     <dt>Preferred Time</dt><dd>${formData.callDateLabel}, ${formData.callTime} <em>(pending confirmation)</em></dd>
                     <dt>Platform</dt><dd>Zoom — link coming by email</dd>
                     <dt>Your Email</dt><dd>${formData.email}</dd>
-                </dl>
-                <div class="meeting-link-box">
-                    <strong>Next step:</strong> Watch for an email from <strong>cielcc68@outlook.com</strong>. Clare will confirm your preferred time and send the Zoom meeting link before the call.
-                </div>`;
+                </dl>`;
         }
 
         document.querySelectorAll('input[name="service"]').forEach(radio => {
@@ -1620,9 +1623,13 @@
         });
 
         const params = new URLSearchParams(window.location.search);
-        if (params.get('service') === 'ai') {
+        const preselected = params.get('service');
+        if (preselected === 'ai') {
             document.getElementById('service-ai').checked = true;
             updateSummary('ai');
+        } else if (preselected === 'tutor') {
+            document.getElementById('service-tutor').checked = true;
+            updateSummary('tutor');
         }
 
         document.getElementById('project-form').addEventListener('submit', (e) => {

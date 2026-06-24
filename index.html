@@ -18,6 +18,8 @@
             --primary: #1a1a1a;
             --secondary: #4a4a4a;
             --accent: #2c5f7c;
+            --accent-light: #e8f0f4;
+            --accent-muted: #f4f8fa;
             --background: #ffffff;
             --surface: #f8f8f8;
             --border: #e5e5e5;
@@ -149,32 +151,135 @@
             letter-spacing: 0.3px;
         }
         
+        /* Section layout */
+        .section-header {
+            text-align: center;
+            max-width: 560px;
+            margin: 0 auto 56px;
+        }
+
+        .section-eyebrow {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 12px;
+        }
+
+        .section-title {
+            font-size: 32px;
+            font-weight: 500;
+            margin-bottom: 12px;
+            letter-spacing: -0.02em;
+        }
+
+        .section-lead {
+            font-size: 15px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .section-alt {
+            background: var(--surface);
+        }
+
+        .section-accent {
+            background: linear-gradient(180deg, var(--accent-muted) 0%, var(--background) 100%);
+        }
+
+        /* Key bullet lists */
+        .key-list {
+            list-style: none;
+            text-align: center;
+            max-width: 520px;
+            margin: 0 auto 40px;
+        }
+
+        .key-list li {
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            gap: 12px;
+            padding: 10px 0;
+            font-size: 15px;
+            color: var(--text-secondary);
+            border-bottom: 1px solid var(--border);
+            line-height: 1.5;
+        }
+
+        .key-list li:last-child {
+            border-bottom: none;
+        }
+
+        .key-list li::before {
+            content: "";
+            flex-shrink: 0;
+            width: 6px;
+            height: 6px;
+            margin-top: 8px;
+            background: var(--accent);
+            border-radius: 50%;
+        }
+
         /* Hero section */
         .hero {
-            padding: 120px 0;
+            padding: 100px 0 88px;
             text-align: center;
+            background:
+                radial-gradient(ellipse 80% 60% at 50% 0%, var(--accent-light) 0%, transparent 70%),
+                linear-gradient(180deg, var(--accent-muted) 0%, var(--background) 100%);
+            border-bottom: 1px solid var(--border);
         }
         
         .hero h1 {
             font-size: 48px;
             font-weight: 500;
-            margin-bottom: 24px;
+            margin-bottom: 12px;
             color: var(--text-primary);
-            letter-spacing: -0.03em;
+            letter-spacing: 1px;
+        }
+
+        .hero-subtitle {
+            font-size: 20px;
+            font-weight: 400;
+            color: var(--accent);
+            margin-bottom: 40px;
+            letter-spacing: 0.3px;
+        }
+
+        .hero-card {
+            background: white;
+            border: 1px solid var(--border);
+            padding: 32px 36px;
+            max-width: 560px;
+            margin: 0 auto 36px;
+            text-align: center;
+        }
+
+        .hero-card-label {
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+            text-align: center;
         }
         
-        .hero p {
-            font-size: 18px;
-            color: var(--text-secondary);
-            max-width: 600px;
-            margin: 0 auto 40px;
-            line-height: 1.7;
+        .hero-actions {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
         }
         
         /* Metrics section */
         .metric {
             text-align: center;
-            padding: 40px 24px;
+            padding: 36px 24px;
+            border-top: 3px solid var(--accent);
         }
         
         .metric-value {
@@ -207,6 +312,7 @@
             font-size: 18px;
             margin-bottom: 12px;
             color: var(--text-primary);
+            text-align: center;
         }
         
         .expertise-card p {
@@ -232,6 +338,167 @@
             position: absolute;
             left: 0;
             color: var(--accent);
+        }
+
+        /* Credentials & skills */
+        .cred-list {
+            max-width: 720px;
+            margin: 0 auto;
+        }
+
+        .cred-item {
+            padding: 24px 0;
+            border-bottom: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .cred-item:last-child {
+            border-bottom: none;
+        }
+
+        .cred-org {
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 6px;
+        }
+
+        .cred-title {
+            font-size: 17px;
+            font-weight: 500;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+
+        .cred-meta {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .exp-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 32px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .exp-card {
+            background: white;
+            border: 1px solid var(--border);
+            padding: 28px;
+            border-top: 3px solid var(--accent);
+        }
+
+        .exp-card h4 {
+            font-size: 18px;
+            margin-bottom: 16px;
+            text-align: center;
+        }
+
+        .exp-card ul {
+            list-style: none;
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        .exp-card li {
+            padding: 8px 0 8px 16px;
+            position: relative;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .exp-card li:last-child {
+            border-bottom: none;
+        }
+
+        .exp-card li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 15px;
+            width: 5px;
+            height: 5px;
+            background: var(--accent);
+            border-radius: 50%;
+        }
+
+        .cert-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            max-width: 960px;
+            margin: 0 auto;
+        }
+
+        .cert-card {
+            background: white;
+            border: 1px solid var(--border);
+            padding: 28px 20px;
+            text-align: center;
+            min-height: 112px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .cert-card h4 {
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 8px;
+            line-height: 1.45;
+        }
+
+        .cert-card p {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .skill-block {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-top: 0;
+            text-align: center;
+        }
+
+        .cap-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            max-width: 960px;
+            margin: 0 auto;
+        }
+
+        .cap-card {
+            background: white;
+            border: 1px solid var(--border);
+            padding: 28px 24px;
+            text-align: center;
+            min-height: 180px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .cap-card h4 {
+            font-size: 16px;
+            font-weight: 500;
+            margin-bottom: 14px;
+            color: var(--text-primary);
+            line-height: 1.3;
+        }
+
+        .affiliations {
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-top: 8px;
+            line-height: 1.6;
         }
         
         /* Service packages */
@@ -283,10 +550,23 @@
         }
         
         .package-list li {
-            padding: 12px 0;
+            padding: 10px 0 10px 18px;
             font-size: 14px;
             color: var(--text-secondary);
             border-bottom: 1px solid var(--border);
+            position: relative;
+            line-height: 1.5;
+        }
+
+        .package-list li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 16px;
+            width: 5px;
+            height: 5px;
+            background: var(--accent);
+            border-radius: 50%;
         }
         
         .package-list li:last-child {
@@ -312,9 +592,9 @@
             .hero h1 {
                 font-size: 36px;
             }
-            
-            .hero p {
-                font-size: 16px;
+
+            .hero-card {
+                padding: 24px;
             }
             
             section {
@@ -323,6 +603,18 @@
             
             nav {
                 display: none;
+            }
+
+            .section-title {
+                font-size: 26px;
+            }
+
+            .cert-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cap-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -333,8 +625,9 @@
         <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
             <h1 style="font-size: 18px; font-weight: 500; letter-spacing: 1px;">CLARE ZHANG</h1>
             <nav>
-                <a href="#impact">Impact</a>
-                <a href="#expertise">Expertise</a>
+                <a href="#education">Education</a>
+                <a href="#experience">Experience</a>
+                <a href="#capabilities">Capabilities</a>
                 <a href="#services">Services</a>
             </nav>
             <a href="start-project.html" class="btn" style="padding: 10px 24px; font-size: 13px;">Get Started</a>
@@ -345,90 +638,141 @@
         <!-- Hero Section -->
         <section class="hero">
             <div class="container">
-                <h1>Data Strategy & AI Solutions</h1>
-                <p>Duke MS in Quantitative Management. I leverage deep enterprise data strategy experience (AT&T, PwC) to drive measurable efficiency and revenue growth through Python, LLMs, and automated BI solutions.</p>
-                <a href="#services" class="btn">Explore Services</a>
+                <h1>CLARE ZHANG</h1>
+                <p class="hero-subtitle">Data Strategy & AI Solutions</p>
+                <div class="hero-actions">
+                    <a href="#services" class="btn">Explore Services</a>
+                    <a href="start-project.html" class="btn btn-secondary">Start a Project</a>
+                </div>
             </div>
         </section>
 
-        <!-- Impact Section -->
-        <section id="impact" style="background: var(--surface);">
+        <!-- Education -->
+        <section id="education">
             <div class="container">
-                <h2 style="font-size: 32px; text-align: center; margin-bottom: 64px; font-weight: 500;">Business Impact</h2>
-                <div class="grid grid-3">
-                    <div class="metric card">
-                        <div class="metric-value">$500K</div>
-                        <div class="metric-label">System Downtime Savings</div>
-                        <div class="metric-description">Predictive modeling reduced AT&T system outages by 30%</div>
+                <div class="section-header">
+                    <span class="section-eyebrow">Education</span>
+                    <h2 class="section-title">Academic Background</h2>
+                </div>
+                <div class="cred-list">
+                    <div class="cred-item">
+                        <div class="cred-org">Duke University</div>
+                        <div class="cred-title">MS in Quantitative Management — Business Analytics</div>
+                        <div class="cred-meta">2021</div>
                     </div>
-                    <div class="metric card">
-                        <div class="metric-value">88%</div>
-                        <div class="metric-label">False Alert Reduction</div>
-                        <div class="metric-description">NLP initiatives enhanced team response and operational efficiency</div>
-                    </div>
-                    <div class="metric card">
-                        <div class="metric-value">$210K</div>
-                        <div class="metric-label">Annual Reporting Automation</div>
-                        <div class="metric-description">Automated Power BI dashboards for 6,000+ systems</div>
+                    <div class="cred-item">
+                        <div class="cred-org">Miami University</div>
+                        <div class="cred-title">BS in Mathematics and Statistics</div>
+                        <div class="cred-meta">2019</div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Expertise Section -->
-        <section id="expertise">
+        <!-- Professional Experience -->
+        <section id="experience" class="section-alt">
             <div class="container">
-                <h2 style="font-size: 32px; text-align: center; margin-bottom: 64px; font-weight: 500;">Expertise</h2>
-                <div class="grid grid-4">
-                    <div class="expertise-card card">
-                        <h4>Data Strategy & BI Automation</h4>
-                        <p style="font-size: 13px; margin-bottom: 20px; color: var(--text-secondary);">Efficiency and quantifiable growth</p>
+                <div class="section-header">
+                    <span class="section-eyebrow">Experience</span>
+                    <h2 class="section-title">Professional Experience</h2>
+                </div>
+                <div class="exp-grid">
+                    <div class="exp-card">
+                        <h4>AT&T</h4>
                         <ul>
-                            <li>Power BI/Tableau automation via Python and REST APIs</li>
-                            <li>SQL, PostgreSQL, MongoDB data modeling</li>
-                            <li>A/B testing and market segmentation</li>
+                            <li>Predictive modeling reduced system outages 30% (~$500K savings)</li>
+                            <li>NLP initiatives cut false alerts 88%</li>
+                            <li>Automated Power BI dashboards for 6,000+ systems ($210K annual savings)</li>
                         </ul>
                     </div>
-                    <div class="expertise-card card">
-                        <h4>Enterprise AI & Deep Learning</h4>
-                        <p style="font-size: 13px; margin-bottom: 20px; color: var(--text-secondary);">Advanced automation and innovation</p>
+                    <div class="exp-card">
+                        <h4>PwC</h4>
                         <ul>
-                            <li>LLM (Gemini) RAG chatbot implementation</li>
-                            <li>NLP and predictive modeling</li>
-                            <li>Virtual try-on and AI fashion platform development</li>
+                            <li>Risk modeling prevented $2.2M in losses</li>
+                            <li>Enterprise data strategy and quantitative analysis</li>
                         </ul>
                     </div>
-                    <div class="expertise-card card">
-                        <h4>Operational Excellence & Agile</h4>
-                        <p style="font-size: 13px; margin-bottom: 20px; color: var(--text-secondary);">Risk mitigation and process improvement</p>
-                        <ul>
-                            <li>Agile/SAFe Agilist project leadership</li>
-                            <li>UX research and gaming segmentation strategy</li>
-                            <li>Risk modeling (prevented $2.2M in losses at PwC)</li>
-                        </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Certificates -->
+        <section id="certificates">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-eyebrow">Professional Development</span>
+                    <h2 class="section-title">Certificates</h2>
+                </div>
+                <div class="cert-grid">
+                    <div class="cert-card">
+                        <h4>MIT xPro — Designing AI Products</h4>
+                        <p>2024</p>
                     </div>
-                    <div class="expertise-card card">
-                        <h4>Creative Project Management</h4>
-                        <p style="font-size: 13px; margin-bottom: 20px; color: var(--text-secondary);">End-to-end delivery and vendor management</p>
-                        <ul>
-                            <li>Creative production operations (100+ videos)</li>
-                            <li>Cross-platform content strategy (57% traffic increase)</li>
-                            <li>Team coordination and partner liaison</li>
-                        </ul>
+                    <div class="cert-card">
+                        <h4>DeepLearning.AI — LLMs & Generative AI</h4>
+                        <p>2024</p>
+                    </div>
+                    <div class="cert-card">
+                        <h4>Microsoft Azure AI-900</h4>
+                        <p>Certified</p>
+                    </div>
+                    <div class="cert-card">
+                        <h4>SAFe Agilist</h4>
+                        <p>Certified</p>
+                    </div>
+                    <div class="cert-card">
+                        <h4>AWS for Games</h4>
+                        <p>Certified</p>
+                    </div>
+                    <div class="cert-card">
+                        <h4>Google GenAI Intensive</h4>
+                        <p>2025</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Professional Capabilities -->
+        <section id="capabilities" class="section-accent">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-eyebrow">Skills</span>
+                    <h2 class="section-title">Professional Capabilities</h2>
+                </div>
+                <div class="cap-grid">
+                    <div class="cap-card">
+                        <h4>Product Design & Growth</h4>
+                        <p class="skill-block">HTML · CSS · Product Management · Figma · Adobe Suite · Storyboarding · UX Research · Design Systems · Rapid Prototyping</p>
+                    </div>
+                    <div class="cap-card">
+                        <h4>Data & AI</h4>
+                        <p class="skill-block">Python · R · SQL · JavaScript · LLMs · NLP · Deep Learning · Predictive Analytics · Experimentation</p>
+                    </div>
+                    <div class="cap-card">
+                        <h4>Creative Tech & Media</h4>
+                        <p class="skill-block">Blender · Unreal · MidJourney · Virtual Try-On · Video Editing · Choreography</p>
+                    </div>
+                    <div class="cap-card">
+                        <h4>Methods</h4>
+                        <p class="skill-block">A/B Testing · Experiment Design · User Research · Engagement & Retention Strategy</p>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- Services Section -->
-        <section id="services" style="background: var(--surface);">
+        <section id="services" class="section-alt">
             <div class="container">
-                <h2 style="font-size: 32px; text-align: center; margin-bottom: 64px; font-weight: 500;">Services</h2>
-                <div class="grid grid-2" style="max-width: 900px; margin: 0 auto;">
+                <div class="section-header">
+                    <span class="section-eyebrow">Offerings</span>
+                    <h2 class="section-title">Services</h2>
+                    <p class="section-lead">Fixed-scope packages with clear deliverables and timelines.</p>
+                </div>
+                <div class="grid grid-3" style="max-width: 1100px; margin: 0 auto;">
                     <div class="package-card">
                         <div class="package-header">
                             <h4>Enterprise BI Dashboard Automation</h4>
-                            <p>Maximize efficiency using proven frameworks that have delivered $210K in annual savings</p>
+                            <p>Proven frameworks — $210K in annual savings delivered</p>
                         </div>
                         <div class="package-body">
                             <div class="package-price">$800 – $2,500</div>
@@ -444,7 +788,7 @@
                     <div class="package-card">
                         <div class="package-header">
                             <h4>Custom AI Assistant Implementation</h4>
-                            <p>Leverage LLMs for complex internal process optimization and automation</p>
+                            <p>LLM-powered process optimization and automation</p>
                         </div>
                         <div class="package-body">
                             <div class="package-price">$1,200 – $3,500+</div>
@@ -454,6 +798,22 @@
                                 <li>Custom NLP text classification and alert optimization</li>
                                 <li>Core business process automation via API integration</li>
                                 <li>Comprehensive prompt engineering and fine-tuning guidance</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="package-card">
+                        <div class="package-header">
+                            <h4>Data, Math & AI Fundamentals Tutoring</h4>
+                            <p>1-on-1 sessions — Duke MSQM & enterprise data background</p>
+                        </div>
+                        <div class="package-body">
+                            <div class="package-price">$75 – $150</div>
+                            <div class="package-time">Per Session | Flexible Scheduling</div>
+                            <ul class="package-list">
+                                <li>Statistics, linear algebra, and Python for data science</li>
+                                <li>AI/ML fundamentals: regression, NLP, and LLM concepts</li>
+                                <li>Custom study plans for interviews, coursework, or career transitions</li>
+                                <li>Practice problems, code review, and session notes</li>
                             </ul>
                         </div>
                     </div>
@@ -469,6 +829,7 @@
     <footer>
         <div class="container">
             <p>&copy; 2025 Clare Zhang | Data Strategy & AI Solutions</p>
+            <p class="affiliations">Duke Alumni Committee · Toastmasters International · Salesforce of North Dallas · Kaggle Community</p>
         </div>
     </footer>
 
