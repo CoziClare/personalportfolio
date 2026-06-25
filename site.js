@@ -1,5 +1,3 @@
-lucide.createIcons();
-
 document.querySelectorAll('.glow-card').forEach(card => {
     card.addEventListener('mousemove', (e) => {
         const rect = card.getBoundingClientRect();
@@ -19,4 +17,9 @@ if (revealEls.length) {
         });
     }, { threshold: 0.1 });
     revealEls.forEach(el => observer.observe(el));
+}
+
+// Replace <i data-lucide="icon-name"></i> with SVG icons (requires Lucide script in <head>).
+if (typeof lucide !== 'undefined') {
+    lucide.createIcons();
 }
