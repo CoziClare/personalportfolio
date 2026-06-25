@@ -5,417 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Clare Zhang — Data Strategy & AI Solutions</title>
     <meta name="description" content="Data analyst & AI strategist. Duke MS. Gaming segmentation, agentic BI, 3D enterprise visuals.">
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/lucide@latest"></script>
-
-    <style>
-        :root {
-            --bg: #09090b;
-            --bg-elevated: #111113;
-            --bg-card: #18181b;
-            --border: rgba(255, 255, 255, 0.08);
-            --border-hover: rgba(255, 255, 255, 0.16);
-            --text: #fafafa;
-            --text-muted: #a1a1aa;
-            --text-subtle: #71717a;
-            --accent: #3b82f6;
-            --accent-glow: rgba(59, 130, 246, 0.35);
-            --purple: #8b5cf6;
-            --green: #22c55e;
-            --radius: 16px;
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
-
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: var(--bg);
-            color: var(--text);
-            line-height: 1.6;
-            -webkit-font-smoothing: antialiased;
-        }
-
-        body::before {
-            content: '';
-            position: fixed;
-            inset: 0;
-            background-image:
-                linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
-            background-size: 64px 64px;
-            mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, black 20%, transparent 70%);
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        .page { position: relative; z-index: 1; }
-        .container { max-width: 1040px; margin: 0 auto; padding: 0 24px; }
-
-        .nav {
-            position: sticky; top: 0; z-index: 100;
-            border-bottom: 1px solid var(--border);
-            background: rgba(9, 9, 11, 0.75);
-            backdrop-filter: blur(16px);
-        }
-
-        .nav-inner {
-            display: flex; align-items: center; justify-content: space-between; height: 56px;
-        }
-
-        .nav-logo { font-size: 13px; font-weight: 600; letter-spacing: 0.08em; color: var(--text); text-decoration: none; }
-
-        .nav-links { display: flex; gap: 28px; list-style: none; }
-        .nav-links a { font-size: 13px; color: var(--text-muted); text-decoration: none; }
-        .nav-links a:hover { color: var(--text); }
-
-        .btn {
-            display: inline-flex; align-items: center; gap: 8px;
-            padding: 8px 16px; font-size: 13px; font-weight: 500;
-            border-radius: 8px; text-decoration: none; border: none;
-        }
-
-        .btn-primary { background: var(--text); color: var(--bg); }
-        .btn-primary:hover { background: #e4e4e7; }
-
-        .btn-ghost {
-            background: transparent;
-            color: var(--text-muted);
-            border: 1px solid var(--border);
-        }
-
-        .btn-ghost:hover { color: var(--text); border-color: var(--border-hover); }
-
-        /* Services */
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 14px;
-        }
-
-        .service-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            padding: 24px;
-            text-decoration: none;
-            color: inherit;
-            display: flex;
-            flex-direction: column;
-            transition: border-color 0.3s, transform 0.3s;
-        }
-
-        .service-card:hover {
-            border-color: var(--border-hover);
-            transform: translateY(-2px);
-        }
-
-        .service-price {
-            font-size: 22px;
-            font-weight: 600;
-            letter-spacing: -0.03em;
-            margin: 12px 0 4px;
-        }
-
-        .service-meta {
-            font-size: 11px;
-            color: var(--text-subtle);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            margin-bottom: 14px;
-        }
-
-        .service-list {
-            list-style: none;
-            font-size: 13px;
-            color: var(--text-muted);
-            margin-bottom: 20px;
-            flex: 1;
-        }
-
-        .service-list li {
-            padding: 6px 0;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .service-list li:last-child { border-bottom: none; }
-
-        .service-cta {
-            font-size: 13px;
-            font-weight: 500;
-            color: var(--accent);
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .services-note {
-            font-size: 13px;
-            color: var(--text-subtle);
-            margin-top: 16px;
-        }
-
-        .services-note a { color: var(--accent); text-decoration: none; }
-
-        /* Hero */
-        .hero { padding: 88px 0 72px; }
-
-        .hero-badge {
-            display: inline-flex; align-items: center; gap: 8px;
-            padding: 5px 12px; border-radius: 999px;
-            border: 1px solid var(--border); background: var(--bg-elevated);
-            font-size: 12px; color: var(--text-muted); margin-bottom: 28px;
-        }
-
-        .hero-badge-dot {
-            width: 6px; height: 6px; border-radius: 50%;
-            background: var(--green); box-shadow: 0 0 8px var(--green);
-        }
-
-        .hero h1 {
-            font-size: clamp(36px, 5vw, 56px);
-            font-weight: 600; letter-spacing: -0.04em; line-height: 1.08;
-            margin-bottom: 12px;
-        }
-
-        .hero-tagline {
-            font-size: 16px; color: var(--text-muted); margin-bottom: 40px;
-        }
-
-        .hero-impact {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 16px;
-            text-align: left;
-        }
-
-        .impact-group {
-            background: var(--bg-elevated);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            padding: 20px 22px;
-        }
-
-        .impact-org {
-            font-size: 12px; font-weight: 600; color: var(--accent);
-            letter-spacing: 0.02em; margin-bottom: 10px;
-        }
-
-        .impact-group ul {
-            list-style: none;
-            font-size: 13px;
-            color: var(--text-muted);
-            line-height: 1.55;
-        }
-
-        .impact-group li {
-            padding-left: 14px;
-            position: relative;
-            margin-bottom: 5px;
-        }
-
-        .impact-group li:last-child { margin-bottom: 0; }
-
-        .impact-group li::before {
-            content: '·';
-            position: absolute;
-            left: 0;
-            color: var(--text-subtle);
-            font-weight: 700;
-        }
-
-        .impact-group.span-full { grid-column: 1 / -1; }
-
-        /* Sections */
-        section { padding: 72px 0; }
-
-        .section-label {
-            font-size: 11px; font-weight: 500; letter-spacing: 0.1em;
-            text-transform: uppercase; color: var(--accent); margin-bottom: 10px;
-        }
-
-        .section-title {
-            font-size: clamp(24px, 3vw, 32px);
-            font-weight: 600; letter-spacing: -0.03em; margin-bottom: 36px;
-        }
-
-        /* Bento */
-        .bento {
-            display: grid;
-            grid-template-columns: repeat(12, 1fr);
-            gap: 14px;
-        }
-
-        .bento-card {
-            position: relative;
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            padding: 24px;
-            overflow: hidden;
-            transition: border-color 0.3s, transform 0.3s;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .bento-card:hover { border-color: var(--border-hover); transform: translateY(-2px); }
-
-        .bento-card::before {
-            content: '';
-            position: absolute; inset: 0; opacity: 0;
-            transition: opacity 0.3s; pointer-events: none;
-        }
-
-        .bento-card:hover::before { opacity: 1; }
-
-        .bento-card-accent-blue::before {
-            background: radial-gradient(500px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), var(--accent-glow), transparent 40%);
-        }
-
-        .bento-card-accent-purple::before {
-            background: radial-gradient(500px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(139, 92, 246, 0.25), transparent 40%);
-        }
-
-        .bento-card-accent-green::before {
-            background: radial-gradient(500px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(34, 197, 94, 0.2), transparent 40%);
-        }
-
-        .bento-card > * { position: relative; z-index: 1; }
-
-        .span-7 { grid-column: span 7; }
-        .span-5 { grid-column: span 5; }
-        .span-12 { grid-column: span 12; }
-
-        .card-tag {
-            display: inline-flex; align-items: center; gap: 6px;
-            font-size: 11px; font-weight: 500; letter-spacing: 0.05em;
-            text-transform: uppercase; color: var(--text-subtle); margin-bottom: 12px;
-        }
-
-        .card-tag i { width: 13px; height: 13px; }
-
-        .card-title {
-            font-size: 18px; font-weight: 600; letter-spacing: -0.02em; margin-bottom: 8px;
-        }
-
-        .card-desc { font-size: 13px; color: var(--text-muted); line-height: 1.6; flex: 1; }
-
-        .card-metric {
-            margin-top: 16px; padding-top: 14px;
-            border-top: 1px solid var(--border);
-            display: flex; align-items: baseline; gap: 8px;
-        }
-
-        .card-metric-value {
-            font-size: 26px; font-weight: 600; letter-spacing: -0.03em; color: var(--accent);
-        }
-
-        .card-metric-label { font-size: 12px; color: var(--text-subtle); }
-
-        .card-stack { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
-
-        .stack-tag {
-            font-size: 11px; padding: 3px 9px; border-radius: 6px;
-            background: rgba(255,255,255,0.05); border: 1px solid var(--border);
-            color: var(--text-muted);
-        }
-
-        /* Timeline */
-        .timeline { position: relative; padding-left: 28px; }
-
-        .timeline::before {
-            content: '';
-            position: absolute; left: 5px; top: 6px; bottom: 6px;
-            width: 1px;
-            background: linear-gradient(to bottom, var(--accent), var(--border));
-        }
-
-        .timeline-item { position: relative; padding-bottom: 28px; }
-        .timeline-item:last-child { padding-bottom: 0; }
-
-        .timeline-dot {
-            position: absolute; left: -28px; top: 5px;
-            width: 13px; height: 13px; border-radius: 50%;
-            background: var(--bg); border: 2px solid var(--accent);
-        }
-
-        .timeline-head {
-            display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 12px;
-            margin-bottom: 6px;
-        }
-
-        .timeline-role { font-size: 15px; font-weight: 600; letter-spacing: -0.02em; }
-        .timeline-org { font-size: 13px; color: var(--accent); }
-        .timeline-meta { font-size: 12px; color: var(--text-subtle); }
-
-        .timeline-bullets {
-            list-style: none; font-size: 13px; color: var(--text-muted);
-        }
-
-        .timeline-bullets li {
-            padding-left: 14px; position: relative; line-height: 1.5;
-        }
-
-        .timeline-bullets li::before {
-            content: '·'; position: absolute; left: 0;
-            color: var(--text-subtle); font-weight: 700;
-        }
-
-        .edu-inline {
-            font-size: 13px; color: var(--text-muted);
-            margin-bottom: 32px; padding-bottom: 32px;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .edu-inline strong { color: var(--text); font-weight: 500; }
-
-        /* Skills */
-        .skills-compact {
-            display: flex; flex-wrap: wrap; gap: 8px;
-        }
-
-        .skill-tag {
-            font-size: 12px; padding: 6px 12px; border-radius: 8px;
-            background: var(--bg-card); border: 1px solid var(--border);
-            color: var(--text-muted);
-        }
-
-        .certs-row {
-            display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px;
-        }
-
-        .cert-badge {
-            font-size: 11px; padding: 6px 12px; border-radius: 999px;
-            border: 1px solid var(--border); background: var(--bg-elevated);
-            color: var(--text-subtle);
-        }
-
-        footer {
-            border-top: 1px solid var(--border);
-            padding: 32px 0; text-align: center;
-        }
-
-        footer p { font-size: 12px; color: var(--text-subtle); }
-
-        .reveal {
-            opacity: 0; transform: translateY(20px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
-        }
-
-        .reveal.visible { opacity: 1; transform: translateY(0); }
-
-        @media (max-width: 768px) {
-            .nav-links { display: none; }
-            .hero-impact { grid-template-columns: 1fr; }
-            .bento { grid-template-columns: 1fr; }
-            .span-7, .span-5, .span-12 { grid-column: span 1; }
-            .services-grid { grid-template-columns: 1fr; }
-        }
-    </style>
+    <link rel="stylesheet" href="css/site.css">
+    <script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.min.js"></script>
 </head>
 <body>
     <div class="page">
@@ -423,53 +17,92 @@
             <div class="container nav-inner">
                 <a href="#" class="nav-logo">CLARE ZHANG</a>
                 <ul class="nav-links">
+                    <li><a href="#timeline">Timeline</a></li>
                     <li><a href="#work">Work</a></li>
-                    <li><a href="#experience">Experience</a></li>
                     <li><a href="#services">Services</a></li>
                     <li><a href="#skills">Skills</a></li>
+                    <li><a href="#certifications">Certs</a></li>
                 </ul>
                 <a href="start-project.html" class="btn btn-primary">Start Project</a>
             </div>
         </header>
 
         <main>
-            <section class="hero">
+            <section class="hero" id="timeline">
                 <div class="container">
                     <div class="hero-badge reveal">
                         <span class="hero-badge-dot"></span>
-                        Data & AI · Duke MS
+                        Senior Data Analyst · Data & AI
                     </div>
-                    <h1 class="reveal">Data strategy &<br>AI solutions</h1>
-                    <p class="hero-tagline reveal">Senior Data Analyst · Python · SQL · LLMs · Power BI</p>
+                    <h1 class="reveal">Data strategy & AI solutions</h1>
+                    <p class="hero-timeline-desc reveal">Growth and milestones — education, enterprise impact, and independent projects.</p>
 
-                    <div class="hero-impact reveal">
-                        <div class="impact-group">
-                            <p class="impact-org">AT&T · Senior Data Analyst</p>
-                            <ul>
-                                <li>3D system visuals for 8K+ stakeholders</li>
-                                <li>Predictive models preserving $500K revenue</li>
-                                <li>88% false alert reduction via NLP</li>
-                            </ul>
-                        </div>
-                        <div class="impact-group">
-                            <p class="impact-org">Projects · 2024 – Present</p>
-                            <ul>
-                                <li>Gaming segmentation — +15% marketing ROI</li>
-                                <li>Agentic BI tool — 10K+ users, churn analytics</li>
-                            </ul>
-                        </div>
-                        <div class="impact-group">
-                            <p class="impact-org">PwC · Risk Analyst Intern</p>
-                            <ul>
-                                <li>Graph-based loan models — $2.2M losses prevented</li>
-                            </ul>
-                        </div>
-                        <div class="impact-group">
-                            <p class="impact-org">The Magni Group · Data Analyst Intern</p>
-                            <ul>
-                                <li>Expense fraud model — $200K uncovered</li>
-                            </ul>
-                        </div>
+                    <div class="milestone-timeline reveal">
+                        <article class="milestone-item">
+                            <span class="milestone-year">2018</span>
+                            <span class="milestone-dot"></span>
+                            <div class="milestone-card glow-card glow-orange">
+                                <span class="milestone-type type-career">Career</span>
+                                <h3 class="milestone-title">The Magni Group</h3>
+                                <p class="milestone-subtitle">Data Analyst Intern</p>
+                                <p class="milestone-detail">$200K fraud uncovered via expense model</p>
+                            </div>
+                        </article>
+
+                        <article class="milestone-item">
+                            <span class="milestone-year">2019</span>
+                            <span class="milestone-dot"></span>
+                            <div class="milestone-card glow-card glow-orange milestone-edu">
+                                <span class="milestone-type type-edu">Education</span>
+                                <h3 class="milestone-title">Miami University</h3>
+                                <p class="milestone-subtitle">BS in Mathematics and Statistics</p>
+                                <p class="milestone-detail">May 2019</p>
+                            </div>
+                        </article>
+
+                        <article class="milestone-item">
+                            <span class="milestone-year">2019</span>
+                            <span class="milestone-dot"></span>
+                            <div class="milestone-card glow-card glow-green">
+                                <span class="milestone-type type-career">Career</span>
+                                <h3 class="milestone-title">PwC · Digital Solutions</h3>
+                                <p class="milestone-subtitle">Risk Analyst Intern · Shanghai</p>
+                                <p class="milestone-detail">Graph-based loan models — $2.2M losses prevented</p>
+                            </div>
+                        </article>
+
+                        <article class="milestone-item">
+                            <span class="milestone-year">2021</span>
+                            <span class="milestone-dot milestone-dot-featured"></span>
+                            <div class="milestone-card glow-card glow-blue milestone-edu milestone-featured">
+                                <span class="milestone-type type-edu">Education</span>
+                                <h3 class="milestone-title">Duke University</h3>
+                                <p class="milestone-subtitle">MS in Quantitative Management: Business Analytics</p>
+                                <p class="milestone-detail">May 2021</p>
+                            </div>
+                        </article>
+
+                        <article class="milestone-item">
+                            <span class="milestone-year">2022 – 24</span>
+                            <span class="milestone-dot"></span>
+                            <div class="milestone-card glow-card glow-blue">
+                                <span class="milestone-type type-career">Career</span>
+                                <h3 class="milestone-title">AT&T</h3>
+                                <p class="milestone-subtitle">Senior Data Analyst · Dallas</p>
+                                <p class="milestone-detail">$500K revenue preserved · 88% alert reduction · 3D visuals for 8K+ stakeholders</p>
+                            </div>
+                        </article>
+
+                        <article class="milestone-item">
+                            <span class="milestone-year">2024 – Now</span>
+                            <span class="milestone-dot milestone-dot-current"></span>
+                            <div class="milestone-card glow-card glow-purple">
+                                <span class="milestone-type type-career">Career</span>
+                                <h3 class="milestone-title">Independent Projects</h3>
+                                <p class="milestone-subtitle">AI & Data Science</p>
+                                <p class="milestone-detail">Gaming segmentation · Agentic BI · 3D visualization</p>
+                            </div>
+                        </article>
                     </div>
                 </div>
             </section>
@@ -480,102 +113,34 @@
                     <h2 class="section-title reveal">Three core projects</h2>
 
                     <div class="bento">
-                        <div class="bento-card bento-card-accent-blue span-7 reveal">
-                            <div class="card-tag"><i data-lucide="layers"></i> Gaming · Python · SQL</div>
+                        <a href="case-gaming.html" class="bento-card glow-card glow-blue span-7 reveal">
+                            <div class="card-tag"><i data-lucide="layers"></i> Segmentation</div>
                             <h3 class="card-title">Gaming Segmentation Strategy</h3>
-                            <p class="card-desc">User clustering and behavioral segmentation to optimize campaign targeting.</p>
+                            <p class="card-desc">Behavioral clustering to optimize campaign targeting.</p>
                             <div class="card-metric">
                                 <span class="card-metric-value">+15%</span>
                                 <span class="card-metric-label">marketing ROI</span>
                             </div>
-                            <div class="card-stack">
-                                <span class="stack-tag">Python</span>
-                                <span class="stack-tag">SQL</span>
-                                <span class="stack-tag">Clustering</span>
-                            </div>
-                        </div>
+                            <span class="card-link">View case study <i data-lucide="arrow-right" style="width:12px;height:12px;"></i></span>
+                        </a>
 
-                        <div class="bento-card bento-card-accent-purple span-5 reveal">
+                        <a href="case-agentic.html" class="bento-card glow-card glow-purple span-5 reveal">
                             <div class="card-tag"><i data-lucide="bot"></i> Agentic BI</div>
                             <h3 class="card-title">Agentic BI Tool</h3>
-                            <p class="card-desc">Churn dashboard for 10K+ users with predictive retention insights.</p>
+                            <p class="card-desc">Churn analytics for 10K+ users with predictive insights.</p>
                             <div class="card-metric">
                                 <span class="card-metric-value">10–15%</span>
                                 <span class="card-metric-label">retention lift</span>
                             </div>
-                            <div class="card-stack">
-                                <span class="stack-tag">SQL</span>
-                                <span class="stack-tag">Python</span>
-                                <span class="stack-tag">Power BI</span>
-                            </div>
-                        </div>
+                            <span class="card-link">View case study <i data-lucide="arrow-right" style="width:12px;height:12px;"></i></span>
+                        </a>
 
-                        <div class="bento-card bento-card-accent-green span-12 reveal">
-                            <div class="card-tag"><i data-lucide="box"></i> 3D · AT&T · Enterprise</div>
+                        <a href="case-3d.html" class="bento-card glow-card glow-green span-12 reveal">
+                            <div class="card-tag"><i data-lucide="box"></i> 3D · Enterprise</div>
                             <h3 class="card-title">3D System Visuals</h3>
-                            <p class="card-desc">Interactive 3D infrastructure visualizations used by 8K+ stakeholders for clearer operational decisions.</p>
-                            <div class="card-stack">
-                                <span class="stack-tag">3D Visualization</span>
-                                <span class="stack-tag">Stakeholder UX</span>
-                                <span class="stack-tag">Enterprise Scale</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section id="experience" style="padding-top: 0;">
-                <div class="container">
-                    <p class="section-label reveal">Career</p>
-                    <h2 class="section-title reveal">Experience</h2>
-
-                    <p class="edu-inline reveal">
-                        <strong>Duke University</strong> — MS Quantitative Management, 2021 &nbsp;·&nbsp;
-                        <strong>Miami University</strong> — BS Mathematics & Statistics, 2019
-                    </p>
-
-                    <div class="timeline reveal">
-                        <div class="timeline-item">
-                            <div class="timeline-dot"></div>
-                            <div class="timeline-head">
-                                <span class="timeline-role">Senior Data Analyst</span>
-                                <span class="timeline-org">AT&T</span>
-                                <span class="timeline-meta">Dallas · Jul 2022 – Oct 2024</span>
-                            </div>
-                            <ul class="timeline-bullets">
-                                <li>BI automation for 6K+ systems — $210K annual savings</li>
-                            </ul>
-                        </div>
-
-                        <div class="timeline-item">
-                            <div class="timeline-dot"></div>
-                            <div class="timeline-head">
-                                <span class="timeline-role">AI & Data Science Projects</span>
-                                <span class="timeline-org">Independent</span>
-                                <span class="timeline-meta">2024 – Present</span>
-                            </div>
-                            <ul class="timeline-bullets">
-                                <li>Gaming segmentation & agentic BI (see above)</li>
-                            </ul>
-                        </div>
-
-                        <div class="timeline-item">
-                            <div class="timeline-dot"></div>
-                            <div class="timeline-head">
-                                <span class="timeline-role">Risk Analyst Intern</span>
-                                <span class="timeline-org">PwC Digital Solutions</span>
-                                <span class="timeline-meta">Shanghai · Winter 2019</span>
-                            </div>
-                        </div>
-
-                        <div class="timeline-item">
-                            <div class="timeline-dot"></div>
-                            <div class="timeline-head">
-                                <span class="timeline-role">Data Analyst Intern</span>
-                                <span class="timeline-org">The Magni Group</span>
-                                <span class="timeline-meta">Birmingham, MI · Summer 2018</span>
-                            </div>
-                        </div>
+                            <p class="card-desc">Interactive infrastructure visualizations for 8K+ stakeholders at AT&T.</p>
+                            <span class="card-link">View case study <i data-lucide="arrow-right" style="width:12px;height:12px;"></i></span>
+                        </a>
                     </div>
                 </div>
             </section>
@@ -586,7 +151,7 @@
                     <h2 class="section-title reveal">Work together</h2>
 
                     <div class="services-grid reveal">
-                        <a href="start-project.html?service=bi" class="service-card">
+                        <a href="start-project.html?service=bi" class="service-card glow-card glow-blue">
                             <div class="card-tag"><i data-lucide="layout-dashboard"></i> BI Automation</div>
                             <h3 class="card-title">Enterprise BI Dashboard Automation</h3>
                             <p class="card-desc">Data pipelines, KPI dashboards, predictive layers.</p>
@@ -600,7 +165,7 @@
                             <span class="service-cta">Start inquiry <i data-lucide="arrow-right" style="width:14px;height:14px;"></i></span>
                         </a>
 
-                        <a href="start-project.html?service=ai" class="service-card">
+                        <a href="start-project.html?service=ai" class="service-card glow-card glow-purple">
                             <div class="card-tag"><i data-lucide="sparkles"></i> AI Implementation</div>
                             <h3 class="card-title">Custom AI Assistant</h3>
                             <p class="card-desc">RAG chatbots, NLP, and process automation via APIs.</p>
@@ -614,7 +179,7 @@
                             <span class="service-cta">Start inquiry <i data-lucide="arrow-right" style="width:14px;height:14px;"></i></span>
                         </a>
 
-                        <a href="start-project.html?service=tutor" class="service-card">
+                        <a href="start-project.html?service=tutor" class="service-card glow-card glow-green">
                             <div class="card-tag"><i data-lucide="graduation-cap"></i> Tutoring</div>
                             <h3 class="card-title">Data & AI Tutoring</h3>
                             <p class="card-desc">1-on-1 guidance in math, statistics, Python, and ML fundamentals.</p>
@@ -629,40 +194,103 @@
                         </a>
                     </div>
 
-                    <p class="services-note reveal">
-                        Fixed-price packages · 3-step inquiry with discovery call
-                    </p>
+                    <p class="services-note reveal">Fixed-price packages · 3-step inquiry with discovery call</p>
                 </div>
             </section>
 
-            <section id="skills" style="padding-top: 0; padding-bottom: 64px;">
+            <section id="skills" style="padding-top: 0;">
                 <div class="container">
                     <p class="section-label reveal">Toolkit</p>
-                    <h2 class="section-title reveal">Skills</h2>
+                    <h2 class="section-title reveal">Skills & Tools</h2>
 
-                    <div class="skills-compact reveal">
-                        <span class="skill-tag">Python</span>
-                        <span class="skill-tag">SQL</span>
-                        <span class="skill-tag">R</span>
-                        <span class="skill-tag">Power BI</span>
-                        <span class="skill-tag">Tableau</span>
-                        <span class="skill-tag">NLP</span>
-                        <span class="skill-tag">LLM</span>
-                        <span class="skill-tag">Predictive Modeling</span>
-                        <span class="skill-tag">PostgreSQL</span>
-                        <span class="skill-tag">Azure</span>
-                        <span class="skill-tag">AWS</span>
-                        <span class="skill-tag">Agile</span>
-                        <span class="skill-tag">A/B Testing</span>
+                    <div class="skills-grid reveal">
+                        <div class="skill-group">
+                            <h4>Growth & Analytics</h4>
+                            <div class="skill-tags">
+                                <span class="skill-tag">Data-Driven Strategy</span>
+                                <span class="skill-tag">A/B Testing</span>
+                                <span class="skill-tag">Salesforce</span>
+                                <span class="skill-tag">AWS</span>
+                                <span class="skill-tag">SEO</span>
+                                <span class="skill-tag">Market Segmentation</span>
+                                <span class="skill-tag">Automation</span>
+                            </div>
+                        </div>
+                        <div class="skill-group">
+                            <h4>Tech Stack</h4>
+                            <div class="skill-tags">
+                                <span class="skill-tag">Python</span>
+                                <span class="skill-tag">SQL</span>
+                                <span class="skill-tag">R</span>
+                                <span class="skill-tag">JavaScript</span>
+                                <span class="skill-tag">HTML/CSS</span>
+                                <span class="skill-tag">REST API</span>
+                                <span class="skill-tag">Power Query</span>
+                                <span class="skill-tag">DAX</span>
+                            </div>
+                        </div>
+                        <div class="skill-group">
+                            <h4>ML</h4>
+                            <div class="skill-tags">
+                                <span class="skill-tag">NLP</span>
+                                <span class="skill-tag">LLM</span>
+                                <span class="skill-tag">Predictive Modeling</span>
+                            </div>
+                        </div>
+                        <div class="skill-group">
+                            <h4>Visualization</h4>
+                            <div class="skill-tags">
+                                <span class="skill-tag">Power BI</span>
+                                <span class="skill-tag">Tableau</span>
+                                <span class="skill-tag">Palantir</span>
+                                <span class="skill-tag">PostgreSQL</span>
+                                <span class="skill-tag">MongoDB</span>
+                                <span class="skill-tag">Azure</span>
+                            </div>
+                        </div>
+                        <div class="skill-group skill-group-wide">
+                            <h4>Project / Operations</h4>
+                            <div class="skill-tags">
+                                <span class="skill-tag">Agile</span>
+                                <span class="skill-tag">A/B Testing</span>
+                                <span class="skill-tag">Data Visualization</span>
+                                <span class="skill-tag">UX Research</span>
+                            </div>
+                        </div>
                     </div>
+                </div>
+            </section>
 
-                    <div class="certs-row reveal">
-                        <span class="cert-badge">MIT xPro · Designing AI Products</span>
-                        <span class="cert-badge">DeepLearning.AI · LLMs & Gen AI</span>
-                        <span class="cert-badge">Azure AI-900</span>
-                        <span class="cert-badge">SAFe Agilist</span>
-                        <span class="cert-badge">Google Gen AI Sprint</span>
-                        <span class="cert-badge">AWS for Games</span>
+            <section id="certifications" style="padding-top: 0; padding-bottom: 64px;">
+                <div class="container">
+                    <p class="section-label reveal">Credentials</p>
+                    <h2 class="section-title reveal">Certifications</h2>
+
+                    <div class="certs-grid reveal">
+                        <div class="cert-card">
+                            <span class="cert-issuer">MIT xPro</span>
+                            <span class="cert-name">Designing AI Products</span>
+                        </div>
+                        <div class="cert-card">
+                            <span class="cert-issuer">DeepLearning.AI</span>
+                            <span class="cert-name">LLMs & Gen AI</span>
+                        </div>
+                        <div class="cert-card">
+                            <span class="cert-issuer">Microsoft</span>
+                            <span class="cert-name">Azure AI-900</span>
+                        </div>
+                        <div class="cert-card">
+                            <span class="cert-issuer">Scaled Agile</span>
+                            <span class="cert-name">SAFe Agilist</span>
+                        </div>
+                        <div class="cert-card">
+                            <span class="cert-issuer">Google</span>
+                            <span class="cert-name">Gen AI Sprint</span>
+                        </div>
+                        <div class="cert-card">
+                            <span class="cert-issuer">AWS</span>
+                            <span class="cert-name">AWS for Games</span>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -674,28 +302,6 @@
             </div>
         </footer>
     </div>
-
-    <script>
-        lucide.createIcons();
-
-        const revealEls = document.querySelectorAll('.reveal');
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach((entry, i) => {
-                if (entry.isIntersecting) {
-                    setTimeout(() => entry.target.classList.add('visible'), i * 50);
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.1 });
-        revealEls.forEach(el => observer.observe(el));
-
-        document.querySelectorAll('.bento-card').forEach(card => {
-            card.addEventListener('mousemove', (e) => {
-                const rect = card.getBoundingClientRect();
-                card.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`);
-                card.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`);
-            });
-        });
-    </script>
+    <script src="js/site.js"></script>
 </body>
 </html>
